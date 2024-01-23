@@ -98,7 +98,7 @@ class loginPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SecondPage()));
+                                builder: (context) => SecondPage(user)));
                       }
                     },
                     child: Text('Login'),
@@ -142,7 +142,8 @@ class loginPage extends StatelessWidget {
 }
 
 class SecondPage extends StatelessWidget {
-  const SecondPage({super.key});
+  final String user;
+  const SecondPage(this.user,{super.key});
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -152,7 +153,7 @@ class SecondPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text("Faisal"),
+          Text(user),
           Container(
             child: ElevatedButton(
               style: ButtonStyle(
@@ -160,7 +161,9 @@ class SecondPage extends StatelessWidget {
                     MaterialStateProperty.all<Color>(Colors.lightBlue),
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: Text('Back'),
             ),
           )
